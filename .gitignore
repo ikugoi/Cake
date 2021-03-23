@@ -1,2 +1,6 @@
 
 osu-tools-master/
+node_modules/
+.gitignore
+package-lock.json
+package.json
