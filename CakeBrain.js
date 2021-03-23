@@ -42,8 +42,8 @@ client.connect().then(() => {
                 var beatmapID = element.pathname.split("/");
                 beatmapID = beatmapID[beatmapID.length - 1];
                 if(isNaN(beatmapID)) return;
-                var modArgs = message.message.split("+").join(",").split("-").join(","), mods = [];
-                modArgs.split(",").forEach(element => { 
+                var modArgs = message.message.split("+").join("-").split("-"), mods = [];
+                modArgs.forEach(element => { 
                     if(element.includes("HD") || element.includes("Hidden")) mods.push("HD");
                     if(element.includes("HR") || element.includes("HardRock")) mods.push("HR");
                     if(element.includes("FL") || element.includes("Flashlight")) mods.push("FL");
