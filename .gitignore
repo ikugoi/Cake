@@ -4,3 +4,4 @@ node_modules/
 .gitignore
 package-lock.json
 package.json
+*.osu

@@ -2,6 +2,6 @@
 :loop
 cls
 title Cake by AuracleTech
-node "./CakeBrain.js"
+node CakeBrain.js
 pause
 goto loop
