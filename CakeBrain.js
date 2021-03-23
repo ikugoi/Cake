@@ -15,7 +15,7 @@ colors.setTheme({ oopsie: ['black', 'bgRed'], debug: 'brightGreen', pm: ['bright
 function CalculatePerformancePoint(resolve, filePath, accuracy, mods) {
     var cmdMods = '';
     mods.forEach(element => { cmdMods += ` -m ${element}`; });
-    exec(`dotnet ${config.locationPerformanceCalculator} simulate osu -a ${accuracy} ${filePath} -j${cmdMods.toLowerCase()}`, (error, stdout, stderr) => {
+    exec(`dotnet "${config.locationPerformanceCalculator}" simulate osu -a ${accuracy} ${filePath} -j${cmdMods.toLowerCase()}`, (error, stdout, stderr) => {
         if (error) { console.log(colors.oopsie(error.message)); return 0; }
         if (stderr) { console.log(colors.oopsie(stderr)); return 0; }
         var jsonOut = JSON.parse(stdout);
@@ -61,7 +61,7 @@ client.connect().then(() => {
                     var acc97 = new Promise((resolve, reject) => { CalculatePerformancePoint(resolve, filePath, 97, mods); });
                     var acc95 = new Promise((resolve, reject) => { CalculatePerformancePoint(resolve, filePath, 95, mods); });
                     Promise.all([acc100, acc99, acc98, acc97, acc95]).then((values) => {
-                        message.user.sendMessage(`95% ${values[4]}pp | 97% ${values[3]}pp | 98% ${values[2]}pp | 99% ${values[1]}pp | 100% ${values[0]}pp 🟣 +${mods.join("")}`);
+                        message.user.sendMessage(`95% ${values[4]}pp | 97% ${values[3]}pp | 98% ${values[2]}pp | 99% ${values[1]}pp | 100% ${values[0]}pp 🟣 ${mods.join("")}`);
                         if(fs.existsSync(filePath)) fs.unlinkSync(filePath);
                     });
                 });
