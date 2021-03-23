@@ -10,7 +10,7 @@ var rp = require('request-promise'); //Request data from URL
 const fs = require('fs'); //.osu file download
 const download = (url, path, callback) => { rp(url, (err, res, body) => { rp(url).pipe(fs.createWriteStream(path)).on('close', callback); }); }
 var colors = require('colors'); //Console Colors
-colors.setTheme({ oopsie: ['black', 'bgRed'], debug: 'brightGreen', pm: ['brightYellow', 'bold'], pmself: ['yellow', 'bold'] });
+colors.setTheme({ oopsie: ['brightRed', 'bold'], debug: 'brightGreen', pm: ['brightYellow', 'bold'], pmself: ['yellow', 'bold'] });
 
 function CalculatePerformancePoint(resolve, filePath, accuracy, mods) {
     var cmdMods = '';
@@ -39,8 +39,8 @@ client.connect().then(() => {
                 if(!validUrl.isUri(element)) return;
                 element = new URL(element);
                 if(element.hostname != "osu.ppy.sh") return;
-                var beatmapID = element.pathname.split("/");
-                beatmapID = beatmapID[beatmapID.length - 1];
+                var beatmapID = element.href.split("/");
+                beatmapID = beatmapID[beatmapID.length - 1].replace(/\D/g,'');
                 if(isNaN(beatmapID)) return;
                 var modArgs = message.message.split("+").join("-").split("-"), mods = [];
                 modArgs.forEach(element => { 
